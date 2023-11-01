@@ -1,7 +1,8 @@
+import { SIDEBAR_MENU } from 'src/app/variables/sidebar-menu';
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { PROFILE_MENU } from 'src/app/variables/profile-menu';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  profileMenu = PROFILE_MENU;
   public focus;
   public listTitles: any[];
   public location: Location;
@@ -17,7 +19,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.listTitles = SIDEBAR_MENU.filter(listTitle => listTitle);
   }
 
   getTitle() {
