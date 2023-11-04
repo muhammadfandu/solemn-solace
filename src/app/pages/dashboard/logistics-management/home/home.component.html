@@ -1,9 +1,50 @@
 <div class="header bg-gradient-success header-default"></div>
 
 <div class="container-fluid page-container">
-    <div class="row">
+
+    <div class="row mb-4">
         <div class="col card py-3 px-4">
             <h1>Logistics Management</h1>
+
+            <ul [(activeId)]="activeId" class="nav" ngbNav>
+                <li [ngbNavItem]="1" class="nav-item">
+                    <span ngbNavLink class="nav-link cursor-pointer text-dark" 
+                        [ngClass]="{'active': activeId === 1}"
+                        (click)="activeId = 1">
+                        Items
+                    </span>
+                </li>
+                <li [ngbNavItem]="2" class="nav-item">
+                    <span ngbNavLink class="nav-link cursor-pointer text-dark" 
+                        [ngClass]="{'active': activeId === 2}"
+                        (click)="activeId = 2">
+                        Categories
+                    </span>
+                </li>
+                <li [ngbNavItem]="2" class="nav-item">
+                    <span ngbNavLink class="nav-link cursor-pointer text-dark" 
+                        [ngClass]="{'active': activeId === 3}"
+                        (click)="activeId = 3">
+                        Products
+                    </span>
+                </li>
+            </ul>
+
         </div>
     </div>
+
+    <div class="row">
+        <div class="col card py-3 px-4">
+            <ng-container *ngIf="activeId === 1">
+                <app-items></app-items>
+            </ng-container>
+            <ng-container *ngIf="activeId === 2">
+                <app-categories></app-categories>
+            </ng-container>
+            <ng-container *ngIf="activeId === 3">
+                <app-products></app-products>
+            </ng-container>
+        </div>
+    </div>
+    
 </div>
