@@ -19,6 +19,10 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
+        path: 'disaster-management',
+        loadChildren: () => import('./disaster-management/disaster-management.module').then(m => m.DisasterManagementModule),
+      },
+      {
         path: 'camp-management',
         loadChildren: () => import('./camp-management/camp-management.module').then(m => m.CampManagementModule),
       },

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminLayoutModule } from 'src/app/layouts/admin-layout/admin-layout.module';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { ImagePreloadDirective } from 'src/app/directives/image-preload.directive';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ]
 })
 export class DashboardModule { }

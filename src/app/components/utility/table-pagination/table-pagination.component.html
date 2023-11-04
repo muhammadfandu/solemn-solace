@@ -1,0 +1,20 @@
+<div class="w-100">
+    <div class="d-flex flex-row-reverse">
+        <button *ngIf="addButton" class="btn btn-primary btn-add float-end mx-2" (click)="addButtonClick.emit()">
+            {{buttonLabel === 'New' ? ' + ' + buttonLabel : buttonLabel}}
+        </button>
+        <select class="form-control form-select"
+            (change)="onPageLimitChange($event)"
+            style="width:100px">
+            <option *ngIf="shortTable" [selected]="limit === 5" value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
+        <span class="align-self-center px-2">Items per page: </span>
+        <button class="btn btn-secondary btn-xs shadow-none" [disabled]="meta ? !meta.hasNextPage : false" (click)="onNextPageClick()"> <i
+                class="bi bi-chevron-right"></i></button>
+        <button class="btn btn-secondary btn-xs shadow-none" [disabled]="meta ? !meta.hasPreviousPage : false" (click)="onPrevPageClick()"> <i
+                class="bi bi-chevron-left"></i></button>
+    </div>
+</div>

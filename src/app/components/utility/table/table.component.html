@@ -1,0 +1,137 @@
+<div class="overflow-mobile-auto">
+    <div class="d-flex flex-row justify-content-between ms-2">
+        <div [style]="version === 2 ? 'min-width:250px;' : 'min-width: 200px;'">
+            <div class="btn-group" *ngIf="cardTemplate">
+                <button (click)="showTable = true" class="btn btn-outline-primary" [ngClass]="{'active': showTable}"><i class="bi-table"></i></button>
+                <button (click)="showTable = false" class="btn btn-outline-primary" [ngClass]="{'active': !showTable}"><i class="bi-grid"></i></button>
+            </div>
+            <div class="search-input-group mb-3">
+                <input
+                    *ngIf="searchColumn.length > 0" 
+                    type="text"
+                    style="background-color: #f1f4f7;"
+                    [ngClass]="version === 2 ? 'w-100 rounded-pill px-3 py-2 border-0' : 
+                        'w-100 search-bar rounded-pill px-3 py-1'"
+                    placeholder="Search"
+                    [(ngModel)]="searchInput"
+                    (keyup)="doSearch()">
+                <img *ngIf="searchColumn.length > 0" 
+                    src="../assets/icons/icons8-search-48.png" 
+                    class="position-absolute search-icon "
+                    [ngClass]="version === 2 ? 'mt-2 me-4' : ''">
+            </div>
+        </div>
+
+        <app-table-pagination
+            [shortTable]="shortTable"
+            [addButton]="addButton"
+            [buttonLabel]="buttonLabel"
+            [limit]="limit"
+            [meta]="meta"
+            (addButtonClick)="addButtonClick.emit()"
+            (paginationChange)="onPaginationChange($event)"
+            (limitChange)="onLimitChange($event)"
+            [rows]="rows">
+        </app-table-pagination>
+    </div>
+
+    <ng-container *ngIf="showTable">
+        <div class="row ms-2">
+            <table 
+                class="" 
+                [ngClass]="version === 2 ? 'table-striped2' : 'table table-borderless table-striped'" 
+                id="overview-table">
+                <thead>
+                    <ng-container
+                        *ngIf="tableHeaderTemplate"
+                        [ngTemplateOutlet]="tableHeaderTemplate">
+                    </ng-container>
+                </thead>
+
+                <tbody>
+
+                    <ng-container *ngIf="!isLoading">
+                        <ng-container *ngIf="rows?.length === 0 || rows === undefined">
+                            <tr>
+                                <td [colSpan]="columns?.length > 0 ? columns?.length + 1 : columnsCount">
+                                    <div class="text-center p-4">
+                                        <i class="bi bi-file fs-1"></i><br>
+                                        <span>No data to display...</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        <ng-container *ngIf="rows?.length > 0">
+                            <ng-container *ngFor="let rowDetail of data; index as i">
+                                <ng-container *ngIf="meta">
+                                    <ng-container *ngIf="i < limit">
+                                        <ng-container
+                                            *ngIf="tableCellTemplate"
+                                            [ngTemplateOutlet]="tableCellTemplate"
+                                            [ngTemplateOutletContext]="{$implicit:rowDetail, index: i+1}"
+                                        >
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="!meta">
+                                    <ng-container *ngIf="i < ((page-1) * limit + limit) && i >= (page-1) * limit">
+                                        <ng-container
+                                            *ngIf="tableCellTemplate"
+                                            [ngTemplateOutlet]="tableCellTemplate"
+                                            [ngTemplateOutletContext]="{$implicit:rowDetail, index: i+1}"
+                                        >
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="isLoading">
+                        <tr>
+                            <td [colSpan]="columns?.length > 0 ? columns?.length + 1 : columnsCount">
+                                <div class="text-center p-4">
+                                    <div class="animate-spin">
+                                        <i class="bi bi-arrow-repeat fs-1"></i><br>
+                                    </div>
+                                    <span>Loading...</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+
+    <!-- <ng-container *ngIf="!showTable">
+        <div class="row mb-3">
+            <div class="card-grid">
+                <ng-container *ngIf="rows?.length > 0">
+                    <ng-container *ngFor="let rowDetail of data; index as i">
+                        <ng-container *ngIf="i <((page-1)*limit + limit) && i>= (page-1)*limit">
+                            <ng-container
+                                *ngIf="cardTemplate"
+                                [ngTemplateOutlet]="cardTemplate"
+                                [ngTemplateOutletContext]="{$implicit:rowDetail}">
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container> -->
+
+    <div class="d-flex flex-row justify-content-end" *ngIf="!isLoading">
+         <div class="text-muted fs-7" *ngIf="rows"> <!-- YZ's Hotfix for when table renders before data is loaded -->
+             Showing: {{(page-1) * limit + 1}} 
+             - {{ ((page-1) * limit + limit) > rows.length ? 
+                    meta ? (page-1) * limit + rows.length 
+                        : rows.length 
+                        : (page-1) * limit + limit }} 
+             of {{meta ? meta.itemCount : rows.length}}
+         </div>
+     </div>
+
+</div>
