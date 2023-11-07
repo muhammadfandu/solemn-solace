@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductsModalComponent } from './products-modal/products-modal.component';
+import { ConfirmModalComponent } from 'src/app/components/utility/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +17,9 @@ export class ProductsComponent implements OnInit {
 
   isLoading = false;
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.fetchRowData();
@@ -52,18 +57,18 @@ export class ProductsComponent implements OnInit {
         image: "https://i.imgur.com/9999999.jpg",
         category: "Hygienic supplies",
       },
-      {
-        name: "Portable Generator",
-        description: "A generator that can be used to provide electricity in the event of a power outage.",
-        image: "https://i.imgur.com/10101010.jpg",
-        category: "Power generation and distribution",
-      },
-      {
-        name: "Satellite Phone",
-        description: "A phone that can be used to communicate in areas without cell phone service.",
-        image: "https://i.imgur.com/11111111.jpg",
-        category: "Communication and coordination",
-      },
+      // {
+      //   name: "Portable Generator",
+      //   description: "A generator that can be used to provide electricity in the event of a power outage.",
+      //   image: "https://i.imgur.com/10101010.jpg",
+      //   category: "Power generation and distribution",
+      // },
+      // {
+      //   name: "Satellite Phone",
+      //   description: "A phone that can be used to communicate in areas without cell phone service.",
+      //   image: "https://i.imgur.com/11111111.jpg",
+      //   category: "Communication and coordination",
+      // },
       {
         name: "4x4 Truck",
         description: "A truck that can be used to transport logistics items to and from disaster zones, even over rough terrain.",
@@ -87,11 +92,37 @@ export class ProductsComponent implements OnInit {
   }
 
   onAddClick() {
-
+    const modalRef = this.modalService.open(ProductsModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000' });
+    modalRef.componentInstance.action = 'create';
+    modalRef.closed.subscribe(event => {
+      if (event === 'success') {
+        this.fetchRowData();
+      } else {
+        this.rows.push(event)
+      }
+    })
   }
 
   onDetailClick(data: any) {
+    const modalRef = this.modalService.open(ProductsModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000 shadow' });
+    modalRef.componentInstance.action = 'read';
+    modalRef.componentInstance.data = data;
+  }
 
+  onEditClick(data: any) {
+    const modalRef = this.modalService.open(ProductsModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000 shadow' });
+    modalRef.componentInstance.action = 'edit';
+    modalRef.componentInstance.data = data;
+  }
+
+  onDeleteClick(data: any) {
+    const modalRef = this.modalService.open(ConfirmModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000' });
+    modalRef.componentInstance.modalLabel = "Are you sure to delete this product?";
+    modalRef.closed.subscribe(async event => {
+      if (event === true) {
+
+      }
+    })
   }
 
   onPaginationChange(page: number) {
@@ -102,5 +133,13 @@ export class ProductsComponent implements OnInit {
   onLimitChange(limit: number) {
     this.limit = limit;
     this.fetchRowData();
+  }
+
+  toggleWithGreeting(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({ greeting });
+    }
   }
 }

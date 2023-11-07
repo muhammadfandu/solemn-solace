@@ -8,7 +8,51 @@
 }
 
 ::ng-deep .bg-info2 {
-    background-color: #f3f8ff;
+    background-color: #f3f8ff !important;
+}
+
+::ng-deep .bg-light {
+    background-color: #f5f7f8 !important;
+}
+
+::ng-deep .fw-bold {
+    font-weight: bold !important;
+}
+
+::ng-deep .fw-bolder {
+    font-weight: bolder !important;
+}
+
+::ng-deep .fs-1 {
+    font-size: 2.5rem !important
+}
+
+::ng-deep .fs-2 {
+    font-size: 2rem !important
+}
+
+::ng-deep .fs-3 {
+    font-size: 1.75rem !important
+}
+
+::ng-deep .fs-4 {
+    font-size: 1.5rem !important
+}
+
+::ng-deep .fs-5 {
+    font-size: 1.2rem !important;
+}
+
+::ng-deep .fs-6 {
+    font-size: 1rem !important;
+}
+
+::ng-deep .fs-7 {
+    font-size: 0.8rem !important;
+}
+
+::ng-deep .fs-8 {
+    font-size: 0.7rem !important;
 }
 
 ::ng-deep .nav {
@@ -37,4 +81,39 @@
     border-bottom: 1px solid #5081d5;
     color: #5081d5 !important;
     font-weight: bold;
+}
+
+::ng-deep .z-index-10000 {
+    z-index: 10000 !important;
+}
+
+::ng-deep .modal-bg-transparent {
+    background-color: transparent !important;
+}
+
+::ng-deep .modal-bg-transparent .modal-content {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+::ng-deep .modal-content {
+    box-shadow: none;
+}
+
+::ng-deep .tooltip .tooltip-arrow:before {
+    position: absolute;
+    content: "";
+    border-color: transparent;
+    border-style: solid;
+}
+
+::ng-deep .bs-tooltip-top .tooltip-arrow:before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow:before {
+    top: -1px;
+    border-width: 0.4rem 0.4rem 0;
+    border-top-color: #000;
+}
+
+::ng-deep .bs-tooltip-top .tooltip-arrow {
+    bottom: 5px
 }

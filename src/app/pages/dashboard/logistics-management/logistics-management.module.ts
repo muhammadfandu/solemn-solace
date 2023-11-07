@@ -9,6 +9,8 @@ import { ItemsComponent } from './items/items.component';
 import { UtilityModule } from 'src/app/components/utility/utility.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductsModalComponent } from './products/products-modal/products-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,13 +19,16 @@ import { ProductsComponent } from './products/products.component';
     HomeComponent,
     ItemsComponent,
     CategoriesComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsModalComponent
   ],
   imports: [
     CommonModule,
     LogisticsManagementRoutingModule,
     NgbModule,
-    UtilityModule
+    UtilityModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class LogisticsManagementModule { }

@@ -1,0 +1,40 @@
+<div class="bg-white rounded">
+    <div class="modal-header">
+        <b>Document</b>
+    </div>
+    
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <ng-container *ngIf="fileUrl">
+                    <div *ngIf="fileExt === 'jpg' || fileExt === 'jpeg' || fileExt === 'png'" class="image-holder d-flex flex-column align-items-center">
+                        <img 
+                            [ngClass]="{
+                                'rotate-0': rotate == 0, 
+                                'rotate-90': rotate == 90, 
+                                'rotate-180': rotate == 180, 
+                                'rotate-270': rotate == 270
+                            }"
+                            [src]="fileUrl" 
+                            class="margin-top-10 img-fluid" 
+                            style="max-height:600px"
+                        >
+                    </div>
+
+                    <div *ngIf="fileExt === 'pdf'" class="image-holder d-flex flex-column align-items-center">
+                        <iframe
+                            [src]="fileUrl"
+                            width="100%" height="600px"></iframe>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="!fileUrl">
+                    No file to be displayed
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onCancel()">{{ cancelBtnLabel || 'Close' }}</button>
+    </div>
+</div>

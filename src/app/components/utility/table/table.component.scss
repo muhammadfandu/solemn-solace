@@ -48,6 +48,14 @@
         }
     }
 
+    tbody {
+        tr {
+            td {
+                vertical-align: baseline !important;
+            }
+        }
+    }
+
     tr:nth-child(even) {
         background-color: #f6f6f6 !important;
     }

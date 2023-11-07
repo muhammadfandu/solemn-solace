@@ -1,0 +1,38 @@
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+img {
+    transform-origin: top left;
+}
+
+.image-holder {
+    overflow: scroll;
+}
+
+.rotate-0 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rotate-90 {
+    transform: rotate(90deg) translateY(-100%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rotate-180 {
+    transform: rotate(180deg) translate(-100%, -100%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rotate-270 {
+    transform: rotate(270deg) translateX(-100%);
+    margin-left: auto;
+    margin-right: auto;
+}
