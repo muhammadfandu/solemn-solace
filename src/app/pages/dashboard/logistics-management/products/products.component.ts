@@ -134,12 +134,4 @@ export class ProductsComponent implements OnInit {
     this.limit = limit;
     this.fetchRowData();
   }
-
-  toggleWithGreeting(tooltip, greeting: string) {
-    if (tooltip.isOpen()) {
-      tooltip.close();
-    } else {
-      tooltip.open({ greeting });
-    }
-  }
 }

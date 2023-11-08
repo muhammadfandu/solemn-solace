@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryModalComponent } from './category-modal/category-modal.component';
+import { ConfirmModalComponent } from 'src/app/components/utility/confirm-modal/confirm-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-categories',
@@ -14,7 +17,9 @@ export class CategoriesComponent implements OnInit {
 
   isLoading = false;
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit(): void {
     this.fetchRowData();
@@ -67,11 +72,37 @@ export class CategoriesComponent implements OnInit {
   }
 
   onAddClick() {
-
+    const modalRef = this.modalService.open(CategoryModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000' });
+    modalRef.componentInstance.action = 'create';
+    modalRef.closed.subscribe(event => {
+      if (event === 'success') {
+        this.fetchRowData();
+      } else {
+        this.rows.push(event)
+      }
+    })
   }
 
   onDetailClick(data: any) {
+    const modalRef = this.modalService.open(CategoryModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000 shadow' });
+    modalRef.componentInstance.action = 'read';
+    modalRef.componentInstance.data = data;
+  }
 
+  onEditClick(data: any) {
+    const modalRef = this.modalService.open(CategoryModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000 shadow' });
+    modalRef.componentInstance.action = 'edit';
+    modalRef.componentInstance.data = data;
+  }
+
+  onDeleteClick(data: any) {
+    const modalRef = this.modalService.open(ConfirmModalComponent, { size: 'lg', windowClass: 'modal-bg-transparent z-index-10000' });
+    modalRef.componentInstance.modalLabel = "Are you sure to delete this category?";
+    modalRef.closed.subscribe(async event => {
+      if (event === true) {
+
+      }
+    })
   }
 
   onPaginationChange(page: number) {

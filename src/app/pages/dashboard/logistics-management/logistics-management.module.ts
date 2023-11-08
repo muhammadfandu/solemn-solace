@@ -11,6 +11,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsModalComponent } from './products/products-modal/products-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoryModalComponent } from './categories/category-modal/category-modal.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ItemsComponent,
     CategoriesComponent,
     ProductsComponent,
-    ProductsModalComponent
+    ProductsModalComponent,
+    CategoryModalComponent
   ],
   imports: [
     CommonModule,

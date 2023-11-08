@@ -107,13 +107,46 @@
     border-style: solid;
 }
 
+
 ::ng-deep .bs-tooltip-top .tooltip-arrow:before,
 .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow:before {
     top: -1px;
     border-width: 0.4rem 0.4rem 0;
-    border-top-color: #000;
+    border-top-color: #000000;
 }
 
 ::ng-deep .bs-tooltip-top .tooltip-arrow {
     bottom: 5px
+}
+
+::ng-deep .tooltip-red {
+    ::ng-deep .tooltip-inner {
+        background-color: #ff0000 !important;
+    }
+
+    ::ng-deep .tooltip-arrow {
+        ::ng-deep .tooltip-arrow::before {
+            border-top-color: #ff0000 !important;
+        }
+    }
+
+    ::ng-deep .tooltip-arrow::before {
+        border-top-color: #ff0000 !important;
+    }
+}
+
+::ng-deep .tooltip-green {
+    ::ng-deep .tooltip-inner {
+        background-color: #00ff55 !important;
+    }
+
+    ::ng-deep .tooltip-arrow {
+        ::ng-deep .tooltip-arrow::before {
+            border-top-color: #00ff55 !important;
+        }
+    }
+
+    ::ng-deep .tooltip-arrow::before {
+        border-top-color: #00ff55 !important;
+    }
 }

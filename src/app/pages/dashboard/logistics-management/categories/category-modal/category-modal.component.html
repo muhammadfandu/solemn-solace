@@ -1,0 +1,50 @@
+<div class="bg-white rounded">
+    <div class="modal-header p-4">
+        <h1 class="modal-title fw-bold">{{title}}</h1>
+        <button type="button" class="btn btn-link p-0 shadow-none" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <i class="bi-x" style="font-size: x-large;"></i>
+        </button>
+    </div>
+    <div class="modal-body px-4">
+        <div *ngIf="action === 'create' || action === 'edit'">
+            <form [formGroup]="categoryForm">
+                <div class="form-group row mb-2 p-2">
+                    <label class="fw-bold col-3 col-form-label">Category Name</label>
+                    <div class="col-9">
+                        <div class="input-group">
+                            <input formControlName="category" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 p-2">
+                    <label class="fw-bold col-3 col-form-label">Product Description</label>
+                    <div class="col-9">
+                        <div class="input-group">
+                            <textarea formControlName="description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="action === 'read' || action === 'delete'">
+            <div class="row py-3 px-2 bg-light rounded">
+                <div class="col-12 mb-3">
+                    <p class="fw-bold fs-6 mb-1">Category</p>
+                    <p>{{ data.category || 'N/A'}}</p>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <p class="fw-bold fs-6 mb-1">Description</p>
+                    <p>{{ data.description || 'N/A'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer p-3">
+        <button *ngIf="action !== 'read'" class="btn btn-outline-primary" (click)="activeModal.close()">Cancel</button>
+        <button class="btn btn-primary mx-2" (click)="confirm()">{{action ===
+            'read' ? 'Close' : this.action === 'delete' ? 'Delete' : 'Confirm'}}</button>
+    </div>
+</div>

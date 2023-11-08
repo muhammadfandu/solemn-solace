@@ -1,20 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-products-modal',
-  templateUrl: './products-modal.component.html',
-  styleUrls: ['./products-modal.component.css']
+  selector: 'app-category-modal',
+  templateUrl: './category-modal.component.html',
+  styleUrls: ['./category-modal.component.css']
 })
-export class ProductsModalComponent implements OnInit {
+export class CategoryModalComponent implements OnInit {
 
   @Input() action: any = 'create';
   @Input() data!: any;
 
   currentOrganisationId: string;
-  productForm!: UntypedFormGroup;
+  categoryForm!: UntypedFormGroup;
   title = '';
   selectedOptions: any = {
     category: ''
@@ -30,20 +30,18 @@ export class ProductsModalComponent implements OnInit {
   ngOnInit(): void {
     switch (this.action) {
       case 'create':
-        this.title = 'Add Product';
-        this.productForm = this.formBuilder.group({
-          product: ['', Validators.required],
+        this.title = 'Add Category';
+        this.categoryForm = this.formBuilder.group({
           category: ['', Validators.required],
           description: ['', Validators.required],
         });
         break;
       case 'read':
-        this.title = 'Product Detail';
+        this.title = 'Category Detail';
         break;
       case 'edit':
-        this.title = 'Update Product';
-        this.productForm = this.formBuilder.group({
-          product: [this.data.name, Validators.required],
+        this.title = 'Update Category';
+        this.categoryForm = this.formBuilder.group({
           category: [this.data.category, Validators.required],
           description: [this.data.description, Validators.required],
         });
@@ -66,20 +64,19 @@ export class ProductsModalComponent implements OnInit {
     if (event === true) {
       switch (this.action) {
         case 'create':
-          this.createProduct();
+          this.createCategory();
           break;
         case 'edit':
-          this.updateProduct();
+          this.updateCategory();
           break;
       }
     }
   }
 
-  async createProduct() {
+  async createCategory() {
     const payload = {
-      name: this.productForm.value.product,
-      category: this.productForm.value.category,
-      description: this.productForm.value.description
+      category: this.categoryForm.value.category,
+      description: this.categoryForm.value.description
     }
     console.log(payload)
     this.activeModal.close(payload);
@@ -95,11 +92,10 @@ export class ProductsModalComponent implements OnInit {
     // });
   }
 
-  async updateProduct() {
+  async updateCategory() {
     const payload = {
-      name: this.productForm.value.product,
-      category: this.productForm.value.category,
-      description: this.productForm.value.description
+      category: this.categoryForm.value.category,
+      description: this.categoryForm.value.description
     }
     // const submit = await this.certificatesService.update(CertificatesServiceType.CERTIFICATES_CATEGORY, payload, this.data.id)
     // submit.subscribe({

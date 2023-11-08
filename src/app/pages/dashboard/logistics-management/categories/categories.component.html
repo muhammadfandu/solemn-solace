@@ -24,7 +24,7 @@
                 <th class="py-2">
                     Description
                 </th>
-                <th class="pr-2">
+                <th class="pr-2" style="width: 100px;">
                     Actions
                 </th>
             </tr>
@@ -42,9 +42,16 @@
                     {{ rowDetail.description || 'N/A'}}
                 </td>
                 <td class="table-action pt-3 pr-2">
-                    <i class="bi bi-eye me-2 fs-5" 
+                    <i class="bi bi-eye mr-2 fs-5" 
                         [ngbTooltip]="'View detail'" 
                         (click)="onDetailClick(rowDetail)"></i>
+                    <i class="bi bi-pencil fs-5 mr-2" 
+                        [ngbTooltip]="'Edit'" 
+                        tooltipClass="my-custom-class"
+                        (click)="onEditClick(rowDetail)"></i>
+                    <i class="bi bi-trash fs-5" 
+                        [ngbTooltip]="'Delete'" 
+                        (click)="onDeleteClick(rowDetail)"></i>
                 </td>
             </tr>
         </ng-template>
