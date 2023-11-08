@@ -3,7 +3,35 @@
 <div class="container-fluid page-container">
     <div class="row">
         <div class="col card py-3 px-4">
-            <h1>Users Management</h1>
+            <!-- <h1>Users Management</h1> -->
+
+            <ul [(activeId)]="activeId" class="nav" ngbNav>
+                <!-- <li [ngbNavItem]="1" class="nav-item">
+                    <span ngbNavLink class="nav-link cursor-pointer text-dark" 
+                        [ngClass]="{'active': activeId === 1}"
+                        (click)="activeId = 1">
+                        Items
+                    </span>
+                </li> -->
+                <li [ngbNavItem]="1" class="nav-item">
+                    <span ngbNavLink class="nav-link cursor-pointer text-dark" 
+                        [ngClass]="{'active': activeId === 1}"
+                        (click)="activeId = 1">
+                        Users
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col card py-3 px-4">
+            <!-- <ng-container *ngIf="activeId === 1">
+                <app-items></app-items>
+            </ng-container> -->
+            <ng-container *ngIf="activeId === 1">
+                <app-user></app-user>
+            </ng-container>
         </div>
     </div>
 </div>
