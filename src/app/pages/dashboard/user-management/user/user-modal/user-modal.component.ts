@@ -49,7 +49,7 @@ export class UserModalComponent implements OnInit {
   }
 
   confirm() {
-    if (this.action === 'view') {
+    if (this.action === 'read') {
       this.activeModal.close();
     } else {
       this.onConfirmResult(true)

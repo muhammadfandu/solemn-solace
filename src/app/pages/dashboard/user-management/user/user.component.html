@@ -48,16 +48,16 @@
                     {{ rowDetail.name || 'N/A'}}
                 </td>
                 <td class="py-3">
-                    {{ rowDetail.description || 'N/A'}}
+                    {{ rowDetail.skills.join(', ') || 'N/A'}}
                 </td>
                 <td class="py-3">
-                    {{ rowDetail.category || 'N/A'}}
+                    {{ rowDetail.age || 'N/A'}} years
                 </td>
                 <td class="py-3">
-                    {{ rowDetail.category || 'N/A'}}
+                    {{ rowDetail.gender || 'N/A'}}
                 </td>
                 <td class="py-3">
-                    {{ rowDetail.category || 'N/A'}}
+                    {{ rowDetail.assignedTo || 'N/A'}}
                 </td>
                 <td class="table-action pt-3 pr-2">
                     <i class="bi bi-eye fs-5 mr-2" 
