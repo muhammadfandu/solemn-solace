@@ -17,7 +17,7 @@ Solemn Solace build with these technologies.
 
 muhammadfandu - [Website](https://muhammadfandu.vercel.app) - muhammad.p.widodo@gmail.com
 
-Project Link: [https://github.com/muhammadfandu/solemn-solace](https://github.com/muhammadfandu/solemn-solace)
+Project Link: [https://github.com/muhammadfandu/celestial-horizon](https://github.com/muhammadfandu/celestial-horizon)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
